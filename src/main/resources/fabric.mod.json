@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "aternosmod",
+  "version": "1.0.0",
+  "name": "Aternos Button",
+  "description": "Przycisk w menu glownym, ktory otwiera Aternos w Operze.",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["pl.aternosmod.AternosModClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.1",
+    "minecraft": "~26.1",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
