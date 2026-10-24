@@ -3,7 +3,6 @@ package pl.aternosmod;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
-import net.minecraft.Util;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.network.chat.Component;
@@ -26,11 +25,14 @@ public class AternosModClient implements ClientModInitializer {
 
     private static void openAternos() {
         try {
-            // Windows: otwiera Opere
-            new ProcessBuilder("cmd", "/c", "start", "opera", URL).start();
+            // Najpierw probujemy Opery
+            Process p = new ProcessBuilder("cmd", "/c", "start", "opera", URL).start();
+            if (p.waitFor() != 0) {
+                // Jesli Opery nie ma, otwieramy domyslna przegladarke
+                new ProcessBuilder("cmd", "/c", "start", "", URL).start();
+            }
         } catch (Exception e) {
-            // awaryjnie domyslna przegladarka
-            Util.getPlatform().openUri(URL);
+            e.printStackTrace();
         }
     }
 }
